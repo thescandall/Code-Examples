@@ -5,12 +5,12 @@ During the last two weeks at the tech academy I worked with my peers on a team t
 
 The following are descriptions of stories I worked on over the course of the project along with some code examples  
 
-#Back End Stories
+# Back End Stories
 
-#CRUD Access
+## CRUD Access
 
 The dashboard currently pulled information from several different views to show information such as company news, jobs, and schedules. They were currently showing links that allowed for editing or deleting information that should only show up for users in the Admin role. I needed to make it so only people with the proper authorization were able to have CRUD functionality
-
+```
  @if (User.IsInRole("Admin"))
         {
             <td>
@@ -26,12 +26,12 @@ The dashboard currently pulled information from several different views to show 
                 @Html.ActionLink("Details", "Details", new { id = item.DateStamp })
             </td>
         }
-
-#Suspension Check
+```
+## Suspension Check
 
 I needed to add a check to the log in to see if a user had been suspended and redirect them to the proper page
 so I used this code to implement that
-
+```
 //selects user id to check suspended status
             var user = UserManager.Users.Where(u => u.UserName == userName).SingleOrDefault();
 
@@ -45,19 +45,19 @@ so I used this code to implement that
             {
                 return View("Lockout");
             }
-            
-#Front End Stories
+   ```         
+# Front End Stories
 
-#Manager Pop Up
+## Manager Pop Up
 
 There needed to be a pop up to confirm any changes made or before any data was deleted by an admin. I added an on click event in Jquery. 
-
+```
   <input type="submit" value="Submit" onclick="return confirm('Click ok to change category')" />
-  
-#Password Requirement Check
+  ```
+## Password Requirement Check
 
 When a new user registered we want there to be a little window pop up with the requirements for their password. The text of the requirements would be in a red text and would change to green as the requirements were met. This required creating a special div using HTML with the requirements, special styling for before and after the requirements were meet with CSS, and the logic to check the password input on keypress in Jquery
-
+```
     <div class="form-group">
         <div id="pswd_info">
             <ul>
@@ -184,3 +184,4 @@ $(window).on('load', function () {
         $('#pswd_info').hide();
     });
 });
+```
